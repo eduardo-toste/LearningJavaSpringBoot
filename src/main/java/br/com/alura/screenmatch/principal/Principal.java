@@ -156,7 +156,7 @@ public class Principal {
     }
 
     private void buscarTop5Series() {
-        List<Serie> topSeries = repositorio.findTop5ByOrderByAvaliacaoDesc();
+        List<Serie> topSeries = repositorio.buscarTopSeries();
 
         topSeries.forEach(s -> System.out.println("Serie: " + s.getTitulo() + ", Avaliacao: " + s.getAvaliacao()));
     }
@@ -165,19 +165,19 @@ public class Principal {
         System.out.println("Deseja buscar series de que categoria/genero: ");
         String nomeGenero = leitura.nextLine();
         Categoria categoria = Categoria.fromPortugues(nomeGenero);
-        List<Serie> seriesPorCategoria = repositorio.findByGenero(categoria);
+        List<Serie> seriesPorCategoria = repositorio.buscaPorGenero(categoria);
         System.out.println("Series da categoria: " + nomeGenero);
         seriesPorCategoria.forEach(System.out::println);
     }
 
     private void buscarSeriesPorTemporada() {
         System.out.println("Deseja buscar uma seria com ate quantas temporadas: ");
-        int qtdTemporadas = leitura.nextInt();
+        int totalTemporadas = leitura.nextInt();
 
         System.out.println("Qual a nota minima para a serie: ");
         Double notaMinima = leitura.nextDouble();
 
-        List<Serie> seriesPorTemporadas = repositorio.findByTotalTemporadasLessThanEqualAndAvaliacaoGreaterThanEqual(qtdTemporadas, notaMinima);
+        List<Serie> seriesPorTemporadas = repositorio.seriesPorTemporadaEAvaliacao(totalTemporadas, notaMinima);
         seriesPorTemporadas.forEach(System.out::println);
     }
 }

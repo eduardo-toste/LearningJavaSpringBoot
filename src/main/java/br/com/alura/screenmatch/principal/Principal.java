@@ -37,6 +37,7 @@ public class Principal {
                     8 - Buscar séries por temporadas
                     9 - Buscar episodio por trecho
                     10 - Top 5 episodios por série
+                    11 - Buscar episodios a partir de uma data
                     
                     0 - Sair                                 
                     """;
@@ -75,6 +76,9 @@ public class Principal {
                     break;
                 case 10:
                     buscarTopEpisodiosPorSerie();
+                    break;
+                case 11:
+                    buscarTopEpisodiosAposData();
                     break;
                 case 0:
                     System.out.println("Saindo...");
@@ -207,5 +211,18 @@ public class Principal {
         List<Episodio> topEpisodiosEncontrados = repositorio.buscarTopEpisodiosPorSerie(serie);
         topEpisodiosEncontrados.forEach(e -> System.out.println("Titulo: " + e.getTitulo() + ", Temporada: " + e.getTemporada() +
                 ", Episodio: " + e.getNumeroEpisodio() + ", Avaliacao: " + e.getAvaliacao()));
+    }
+
+    private void buscarTopEpisodiosAposData() {
+        System.out.println("Digite a serie desejada: ");
+        String serie = leitura.nextLine();
+
+        System.out.println("Digite o ano limite de lancamento: ");
+        var anoLancamento = leitura.nextInt();
+        leitura.nextLine();
+
+        List<Episodio> episodiosPorAno = repositorio.buscarEpisodiosPorSerieEAno(serie, anoLancamento);
+        episodiosPorAno.forEach(e -> System.out.println("Titulo: " + e.getTitulo() + ", Temporada: " + e.getTemporada() +
+                ", Episodio: " + e.getNumeroEpisodio() + ", Data de Lancamento: " + e.getDataLancamento()));
     }
 }

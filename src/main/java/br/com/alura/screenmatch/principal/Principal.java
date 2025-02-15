@@ -36,6 +36,7 @@ public class Principal {
                     7 - Buscar séries por categoria
                     8 - Buscar séries por temporadas
                     9 - Buscar episodio por trecho
+                    10 - Top 5 episodios por série
                     
                     0 - Sair                                 
                     """;
@@ -72,6 +73,9 @@ public class Principal {
                 case 9:
                     buscarEpisodioPorTrecho();
                     break;
+                case 10:
+                    buscarTopEpisodiosPorSerie();
+                    break;
                 case 0:
                     System.out.println("Saindo...");
                     break;
@@ -101,7 +105,7 @@ public class Principal {
         System.out.println("Escolha uma serie pelo nome: ");
         var nomeSerie = leitura.nextLine();
 
-        Optional<Serie> serie = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        Optional<Serie> serie = repositorio.buscaPorTitulo(nomeSerie);
 
         if(serie.isPresent()){
 
@@ -138,7 +142,7 @@ public class Principal {
         System.out.println("Escolha uma serie pelo nome: ");
         var nomeSerie = leitura.nextLine();
 
-        Optional<Serie> serieBuscada = repositorio.findByTituloContainingIgnoreCase(nomeSerie);
+        Optional<Serie> serieBuscada = repositorio.buscaPorTitulo(nomeSerie);
 
         if (serieBuscada.isPresent()){
             System.out.println("Dados da serie: " + serieBuscada);
@@ -154,7 +158,7 @@ public class Principal {
         System.out.println("Avaliacoes a partir de qual valor: ");
         Double avaliacao = leitura.nextDouble();
 
-        List<Serie> seriesEncontradas = repositorio.findByAtoresContainingIgnoreCaseAndAvaliacaoGreaterThanEqual(nomeAtor, avaliacao);
+        List<Serie> seriesEncontradas = repositorio.buscaPorAtorEAvaliacao(nomeAtor, avaliacao);
         System.out.println("Series em que " + nomeAtor + " trabalhou:");
         seriesEncontradas.forEach(s -> System.out.println("Serie: " + s.getTitulo() + ", Avaliacao: " + s.getAvaliacao()));
     }
@@ -194,5 +198,13 @@ public class Principal {
                 System.out.printf("Serie: %s Temporada %s - Episodio %s - %s\n",
                         e.getSerie().getTitulo(), e.getTemporada(),
                         e.getNumeroEpisodio(), e.getTitulo()));
+    }
+
+    private void buscarTopEpisodiosPorSerie() {
+        System.out.println("Digite a serie desejada: ");
+        String serie = leitura.nextLine();
+
+        List<Episodio> topEpisodiosEncontrados = repositorio.buscarTopEpisodiosPorSerie(serie);
+        topEpisodiosEncontrados.forEach(System.out::println);
     }
 }

@@ -205,6 +205,7 @@ public class Principal {
         String serie = leitura.nextLine();
 
         List<Episodio> topEpisodiosEncontrados = repositorio.buscarTopEpisodiosPorSerie(serie);
-        topEpisodiosEncontrados.forEach(System.out::println);
+        topEpisodiosEncontrados.forEach(e -> System.out.println("Titulo: " + e.getTitulo() + ", Temporada: " + e.getTemporada() +
+                ", Episodio: " + e.getNumeroEpisodio() + ", Avaliacao: " + e.getAvaliacao()));
     }
 }

@@ -1,13 +1,13 @@
 # ScreenMatch
 
 ## Sobre o Projeto
-O ScreenMatch é uma aplicação desenvolvida em Java com Spring Boot que consome a API do OMDB para buscar informações sobre séries, temporadas e episódios. O projeto permite filtrar episódios por diferentes critérios e calcular estatísticas detalhadas.
+O ScreenMatch é uma aplicação desenvolvida em Java com Spring Boot que consome a API do OMDB para buscar informações sobre séries, temporadas e episódios. A aplicação foi criada para ser utilizada via terminal, permitindo ao usuário realizar todas as ações por meio de comandos no terminal, sem a necessidade de interface gráfica.
 
 ## Funcionalidades
-- Buscar séries pelo nome;
-- Exibir temporadas e episódios de uma série;
-- Filtrar episódios por avaliação, data de lançamento e outros critérios;
-- Calcular estatísticas como média, menor e maior avaliação, além da soma das avaliações.
+- Buscar séries pelo nome diretamente no terminal;
+- Exibir temporadas e episódios de uma série por meio de comandos no terminal;
+- Filtrar episódios por avaliação, data de lançamento e outros critérios via terminal;
+- Calcular estatísticas como média, menor e maior avaliação, além da soma das avaliações diretamente no terminal.
 
 ## Tecnologias Utilizadas
 - **Java 17** + **Spring Boot**;
